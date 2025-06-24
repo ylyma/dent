@@ -49,7 +49,6 @@ RUN apt-get update && apt-get install -y \
     fd-find \
     fzf \
     tmux \
-    fish \
     htop \
     tree \
     && rm -rf /var/lib/apt/lists/*
@@ -59,6 +58,7 @@ RUN apt-get update && apt-get install -y \
     python3-pynvim \
     python3-neovim \
     && rm -rf /var/lib/apt/lists/*
+
 
 # nvim
 RUN curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz \
@@ -103,11 +103,9 @@ RUN git clone --filter=blob:none --branch=stable \
     https://github.com/folke/lazy.nvim.git \
     /home/$USERNAME/.local/share/nvim/lazy/lazy.nvim
 
-
 # ------
 # scripts
 # ------
 COPY --chown=$USERNAME:$USERNAME --chmod=755 ./run.sh /home/$USERNAME/run.sh 
 
 ENTRYPOINT ["/home/amy/run.sh"]
-CMD ["bash"]
