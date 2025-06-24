@@ -1,0 +1,35 @@
+---
+services:
+  dent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dont
+    volumes:
+      - ./curr:/home/amy/curr
+      - ~/Desktop/projects/:/home/amy/projects
+      
+      - ~/.config/nvim:/home/amy/.config/nvim
+      
+      - docal:/home/amy/.local
+      - dache:/home/amy/.cache
+      
+      - ~/.gitconfig:/home/amy/.gitconfig
+      - ~/.ssh:/home/amy/.ssh
+    working_dir: /home/amy/curr
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+      - "8080:8080"
+    environment:
+      - TERM=xterm-256color
+      - COLORTERM=truecolor
+      - USER=amy
+      - HOME=/home/amy
+    command: []
+
+volumes:
+  docal:
+  dache:
